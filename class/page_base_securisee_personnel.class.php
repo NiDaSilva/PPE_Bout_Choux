@@ -17,7 +17,7 @@ class page_base_securisee_personnel extends page_base {
 			<li><a href="">Gestion des enfants </a>
 				<ul>
 							<li><a href="ajout_famille.php">Ajouter progrès</a></li>
-							<li><a href="ajout_famille.php">Consulter les commentaire d'un enfant</a></li>
+							<li><a href="enfant_commentaire.php">Consulter les commentaire d'un enfant</a></li>
 				</ul>
 			</li>
 	

@@ -875,6 +875,12 @@ class controleur {
 		$retour = $retour . '</tbody></table></form></article>';
 		return $retour;
 	}
-}
 
+	public function retourne_formulaire_liste_commentaire()
+	{
+	$form = "";
+	return $form;
+	
+	}
+}
 ?>
