@@ -194,5 +194,24 @@ class mypdo extends PDO{
     	}
     	return false;
     }
+	
+	public function liste_enfant()
+	{
+		 $requete='select * from enfant ;';
+		 
+    	$result=$this->connexion ->query($requete);
+    	if ($result)
+    	{
+    		if ($result-> rowCount()==0)
+    		{
+    			return false;
+				
+    		}
+			
+    		return $result;
+    
+    	}
+    	return false;
+	}
 }
 ?>

@@ -877,10 +877,43 @@ class controleur {
 	}
 
 	public function retourne_formulaire_liste_commentaire()
-	{
-	$form = "";
-	return $form;
+		{
+		$form = "";
+		return $form;
 	
+		}
+	
+		public function retourne_formulaire_enfant()
+	{
+		$result = $this->vpdo->liste_enfant();
+		echo $result;
+		$retour = '		
+			<label for="enfants">selectionner un enfant</label>
+			<select name="LesEnfants" id="LesEnfants">
+			<option value=" ">-- Les Enfants --</option>
+	
+			</p>
+		';		
+		/*	foreach($result as $unE)
+			{
+				$retour .='
+				<option value='.$unE->nom.'>'.$unE->prenom.''.'</option>';
+			}
+		*/
+
+		if ($result != false) {
+			while ( $row = $result->fetch ( PDO::FETCH_OBJ ) )
+			// parcourir chaque ligne sélectionnée
+			{
+				
+				$retour .= '
+    			<option value='.$row->nom.'>'.$row->prenom.''.'</option>
+    			
+    			';
+			}
+			$retour .= '</select>';
+		}
+			return $retour;
 	}
 }
 ?>
