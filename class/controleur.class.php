@@ -1,4 +1,6 @@
 <?php
+
+
 class controleur {
 
 	private $vpdo;
@@ -479,6 +481,8 @@ class controleur {
 		// retourner le résultat final
 		return $mdp;
 	}
+
+	
 	
 	
 	public function retourne_formulaire_famille($type,$idfamille="") {
@@ -875,6 +879,47 @@ class controleur {
 		$retour = $retour . '</tbody></table></form></article>';
 		return $retour;
 	}
+
+
+public function retourne_liste_enfant()
+	{
+
+		$retour = '
+				<style type="text/css">
+    			table {border-collapse: collapse;}
+				tr:nth-of-type(odd) {background: #eee;}
+				tr:nth-of-type(even) {background: #eff;}
+				tr{color: black;}
+				th {background: #333;color: white;}
+				td, th {padding: 6px;border: 1px solid #ccc;}
+				</style>
+				<article >
+    	<table>
+    		<thead>
+        		<tr>
+            		<th >Identifiant Famille</th>
+            		<th >Nom RP1</th>
+            		<th >Prénom RP1</th> 
+        		</tr>
+    		</thead>
+    		<tbody >';
+		$resulta = $this->vpdo->liste_enfant ($_SESSION['id']);
+					if ($resulta != false) {
+			while ( $row = $resulta->fetch ( PDO::FETCH_OBJ ) )
+			// parcourir chaque ligne sélectionnée
+			{
+				
+				$retour = $retour . '<tr>
+    			<td>' . $row->id_enfant  . '</td>
+    			<td>' . $row->nom . '</td>
+    			<td>' . $row->prenom . '</td>
+    			</tr>';
+			}
+		}
+		$retour = $retour . '</tbody></table></form></article>';
+		return $retour;
+	}
+
 }
 
 ?>

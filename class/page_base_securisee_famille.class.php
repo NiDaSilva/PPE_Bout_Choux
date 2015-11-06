@@ -15,11 +15,10 @@ class page_base_securisee_famille extends page_base {
 		?>
 
 			<li><a href="">Gestion des enfants </a>
-				<ul>
 
-				</ul>
 			</li>
-	
+			<li><a href="Liste_Enfants.php">Liste des enfants </a>
+			</li>
 		<?php 
 
 	}
