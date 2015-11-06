@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 02 Octobre 2015 à 17:05
+-- Généré le :  Ven 06 Novembre 2015 à 15:44
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -48,14 +48,23 @@ INSERT INTO `administrateur` (`id`, `identifiant`, `mp`) VALUES
 
 CREATE TABLE IF NOT EXISTS `enfant` (
   `id_enfant` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` text NOT NULL,
-  `prenom` text NOT NULL,
-  `commentairefamille` text,
+  `nom` varchar(32) NOT NULL,
+  `prenom` varchar(32) NOT NULL,
+  `commentairefamille` varchar(32) DEFAULT NULL,
   `datenaiss` date NOT NULL,
   `id_famille` int(11) NOT NULL,
   PRIMARY KEY (`id_enfant`),
   KEY `id_famille` (`id_famille`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Contenu de la table `enfant`
+--
+
+INSERT INTO `enfant` (`id_enfant`, `nom`, `prenom`, `commentairefamille`, `datenaiss`, `id_famille`) VALUES
+(3, 'Tezt', 'tezt', 'tezt', '2015-10-13', 1),
+(4, 'Yahiaoui', 'Aldwin', 'ras', '2015-10-01', 1),
+(5, 'Nauleau', 'Matthieu', 'ras', '2015-10-03', 1);
 
 -- --------------------------------------------------------
 
@@ -92,7 +101,14 @@ CREATE TABLE IF NOT EXISTS `famille` (
   `date_envoi_mail_demande_inscription` date DEFAULT NULL,
   PRIMARY KEY (`id_famille`),
   UNIQUE KEY `identifiant` (`identifiant`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `famille`
+--
+
+INSERT INTO `famille` (`id_famille`, `identifiant`, `mp`, `nom1`, `prenom1`, `adresse11`, `adresse12`, `cp1`, `ville1`, `mail1`, `tel11`, `tel12`, `tel13`, `fonction1`, `nom2`, `prenom2`, `adresse21`, `adresse22`, `cp2`, `ville2`, `mail2`, `tel21`, `tel22`, `tel23`, `fonction2`, `date_envoi_mail_demande_inscription`) VALUES
+(1, 'famille', 'ed81c0311eb5364a8d6d1d1b63f3c51d', 'Testfamille', 'testfamille', NULL, NULL, NULL, NULL, NULL, '0241772030', NULL, NULL, 'Testeur', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -102,10 +118,17 @@ CREATE TABLE IF NOT EXISTS `famille` (
 
 CREATE TABLE IF NOT EXISTS `personnel` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `identifiant` text NOT NULL,
-  `mdp` text NOT NULL,
+  `identifiant` varchar(32) NOT NULL,
+  `mdp` varchar(32) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `personnel`
+--
+
+INSERT INTO `personnel` (`id`, `identifiant`, `mdp`) VALUES
+(1, 'personnel', 'f82366a9ddc064585d54e3f78bde3221');
 
 -- --------------------------------------------------------
 
@@ -119,6 +142,16 @@ CREATE TABLE IF NOT EXISTS `progres` (
   `date` date NOT NULL,
   KEY `id_enfant` (`id_enfant`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `progres`
+--
+
+INSERT INTO `progres` (`id_enfant`, `commentaire`, `date`) VALUES
+(3, 'Code PHP', '0000-00-00'),
+(3, 'Code HTML', '0000-00-00'),
+(4, 'Code C#', '2015-10-01'),
+(4, 'Code C+', '2015-10-07');
 
 --
 -- Contraintes pour les tables exportées

@@ -202,7 +202,23 @@ class mypdo extends PDO{
     public function liste_famille()
     {
     	$requete='select * from famille ;';
-    	$result=$this->connexion ->query($requete);
+    	$result=$this->connexion->query($requete);
+    	if ($result)
+    	{
+    		if ($result-> rowCount()==0)
+    		{
+    			return false;
+    		}
+    		return $result;
+    
+    	}
+    	return false;
+    }
+	
+	    public function liste_commentaire($id_enfant)
+    {
+    	$requete='select commentaire, date from progres where id_enfant='.$id_enfant.';';
+    	$result=$this->connexion->query($requete);
     	if ($result)
     	{
     		if ($result-> rowCount()==0)
@@ -219,8 +235,10 @@ class mypdo extends PDO{
 	{
 		 $requete='select * from enfant ;';
 		 
-    	$result=$this->connexion ->query($requete);
-    	if ($result)
+    	$result=$this->connexion->query($requete);
+
+		return $result;
+    	/*if ($result)
     	{
     		if ($result-> rowCount()==0)
     		{
@@ -232,6 +250,7 @@ class mypdo extends PDO{
     
     	}
     	return false;
+		*/
 	}
 }
 ?>

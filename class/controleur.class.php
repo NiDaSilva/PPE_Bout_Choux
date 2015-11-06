@@ -926,42 +926,85 @@ public function retourne_liste_enfant()
 >>>>>>> origin/master
 
 	public function retourne_formulaire_liste_commentaire()
-		{
-		$form = "";
-		return $form;
-	
-		}
-	
-		public function retourne_formulaire_enfant()
 	{
 		$result = $this->vpdo->liste_enfant();
-		echo $result;
-		$retour = '		
+		$retour = '	
+		<form action="enfant_commentaire.php" method="post">		
 			<label for="enfants">selectionner un enfant</label>
 			<select name="LesEnfants" id="LesEnfants">
-			<option value=" ">-- Les Enfants --</option>
-	
-			</p>
-		';		
-		/*	foreach($result as $unE)
-			{
-				$retour .='
-				<option value='.$unE->nom.'>'.$unE->prenom.''.'</option>';
-			}
-		*/
-
-		if ($result != false) {
+			<option value=" ">-- Les Enfants --</option>';
+		if ($result != false) 
+		{
 			while ( $row = $result->fetch ( PDO::FETCH_OBJ ) )
 			// parcourir chaque ligne sélectionnée
 			{
 				
-				$retour .= '
-    			<option value='.$row->nom.'>'.$row->prenom.''.'</option>
-    			
-    			';
+				$retour .= '<option value='.$row->id_enfant.'>'.$row->nom.''.'</option>';
 			}
-			$retour .= '</select>';
+			$retour .= '</select><input type="submit" name="submit" value="Submit" /></form>';
+			
 		}
+				if (isset($_POST['LesEnfants']))
+		{
+			$id_enfant = $_POST['LesEnfants'] ; 
+				$retour = '
+				<style type="text/css">
+    			table {border-collapse: collapse;}
+				tr:nth-of-type(odd) {background: #eee;}
+				tr:nth-of-type(even) {background: #eff;}
+				tr{color: black;}
+				th {background: #333;color: white;}
+				td, th {padding: 6px;border: 1px solid #ccc;}
+				</style>
+				<article >
+				<table>
+				<thead>
+        		<tr>
+            		<th >Commentaire</th>
+            		<th >Date</th>
+        		</tr>
+				</thead>
+				<tbody >';
+				$result2 = $this->vpdo->liste_commentaire ( $id_enfant );
+		if ($result2 != false) 
+		{
+			while ( $row = $result2->fetch ( PDO::FETCH_OBJ ) )
+				// parcourir chaque ligne sélectionnée
+			{
+				
+				$retour = $retour . '<tr>
+    			<td>' . $row->commentaire . '</td>
+    			<td>' . $row->date . '</td>
+    			</tr>';
+			}
+		}
+		$retour = $retour . '</tbody></table></article>';
+		
+		}
+		return $retour;
+	}
+	
+	
+	
+		public function retourne_formulaire_enfant()
+	{
+		$result = $this->vpdo->liste_enfant();
+		$retour = '		
+			<label for="enfants">selectionner un enfant</label>
+			<select name="LesEnfants" id="LesEnfants">
+			<option value=" ">-- Les Enfants --</option>';
+		if ($result != false) 
+		{
+			while ( $row = $result->fetch ( PDO::FETCH_OBJ ) )
+			// parcourir chaque ligne sélectionnée
+			{
+				
+				$retour .= '<option value='.$row->nom.'>'.$row->prenom.''.'</option>';
+			}
+			
+		}
+
+		$retour .= '</select>';
 			return $retour;
 	}
 }
