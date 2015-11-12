@@ -879,7 +879,6 @@ class controleur {
 		$retour = $retour . '</tbody></table></form></article>';
 		return $retour;
 	}
-<<<<<<< HEAD
 
 
 public function retourne_liste_enfant()
@@ -922,9 +921,6 @@ public function retourne_liste_enfant()
 	}
 
 }
-=======
->>>>>>> origin/master
-
 	public function retourne_formulaire_liste_commentaire()
 	{
 		$result = $this->vpdo->liste_enfantbrut();

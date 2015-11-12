@@ -58,11 +58,8 @@ class mypdo extends PDO{
 
     public function liste_enfant($id)
     {
-        $id=1;
         $requete='select * from enfant where id_famille='.$id.';';
-        $resulta=$this->connexion ->query($requete);
-        echo($requete);
-         
+        $resulta=$this->connexion ->query($requete);         
         if ($resulta)
     
         {
