@@ -920,7 +920,7 @@ public function retourne_liste_enfant()
 		return $retour;
 	}
 
-}
+
 	public function retourne_formulaire_liste_commentaire()
 	{
 		$result = $this->vpdo->liste_enfantbrut();
