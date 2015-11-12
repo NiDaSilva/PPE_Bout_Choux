@@ -312,11 +312,11 @@ class controleur {
 					<input type="radio" name="rblogin" id="rba" value="rba" required/>Administrateur</br></br>
 					<input type="submit" name="send" class="button" value="Envoi login" />
 				</form>
-				<script>function hd(){ $("#modal").hide();}</script>
+				<script>function rd(){document.location.href="index.php";}</script>
 				<div  id="modal" >
 										<h1>Informations !</h1>
 										<div id="dialog1" ></div>
-										<a class="no" onclick="hd();">OK</a>
+										<a class="no" onclick="rd();">OK</a>
 				</div>
 			<article >
 	<script>
@@ -927,7 +927,7 @@ public function retourne_liste_enfant()
 
 	public function retourne_formulaire_liste_commentaire()
 	{
-		$result = $this->vpdo->liste_enfant();
+		$result = $this->vpdo->liste_enfantbrut();
 		$retour = '	
 		<form action="enfant_commentaire.php" method="post">		
 			<label for="enfants">selectionner un enfant</label>
@@ -968,10 +968,10 @@ public function retourne_liste_enfant()
 				$result2 = $this->vpdo->liste_commentaire ( $id_enfant );
 		if ($result2 != false) 
 		{
+			
 			while ( $row = $result2->fetch ( PDO::FETCH_OBJ ) )
 				// parcourir chaque ligne sélectionnée
 			{
-				
 				$retour = $retour . '<tr>
     			<td>' . $row->commentaire . '</td>
     			<td>' . $row->date . '</td>
@@ -988,8 +988,9 @@ public function retourne_liste_enfant()
 	
 		public function retourne_formulaire_enfant()
 	{
-		$result = $this->vpdo->liste_enfant();
-		$retour = '		
+			$result = $this->vpdo->liste_enfantbrut();
+		$retour = '	
+		<form action="ajout_progres.php" method="post">		
 			<label for="enfants">selectionner un enfant</label>
 			<select name="LesEnfants" id="LesEnfants">
 			<option value=" ">-- Les Enfants --</option>';
@@ -999,13 +1000,25 @@ public function retourne_liste_enfant()
 			// parcourir chaque ligne sélectionnée
 			{
 				
-				$retour .= '<option value='.$row->nom.'>'.$row->prenom.''.'</option>';
+				$retour .= '<option value='.$row->id_enfant.'>'.$row->nom.''.'</option>';
 			}
-			
-		}
+			$retour .= '</select>
+				Ajouter le progrès : <input type="text" name="commentaire" />
+	            Date du progrès : <input type="date" name="date" />
+				<input type="submit" value="valider" />
+				</form>';		
 
-		$retour .= '</select>';
-			return $retour;
+		}
+				if (isset($_POST['commentaire']))
+		{
+		$commentaire = $_POST['commentaire'];
+		$date = $_POST['date'];
+		$id_enfant = $_POST['LesEnfants'];
+		$result2 = $this->vpdo->ajoutp ( $id_enfant, $commentaire, $date );
+		$retour = 'Insertion reussi';
+		}
+		
+		return $retour;
 	}
 }
 ?>

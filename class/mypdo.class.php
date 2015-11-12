@@ -231,26 +231,29 @@ class mypdo extends PDO{
     	return false;
     }
 	
-	public function liste_enfant()
+	public function liste_enfantbrut()
 	{
 		 $requete='select * from enfant ;';
 		 
     	$result=$this->connexion->query($requete);
 
 		return $result;
-    	/*if ($result)
+	}
+	
+	public function ajoutp($id_enfant,$commentaire,$date)
+	{
+		    	$requete='INSERT INTO progres (id_enfant,commentaire,date) VALUES ("'.$id_enfant.'","'.$commentaire.'","'.$date.'");';
+				$nblignes=$this->connexion -> exec($requete);
+    	if ($nblignes !=1)
     	{
-    		if ($result-> rowCount()==0)
-    		{
-    			return false;
-				
-    		}
-			
-    		return $result;
-    
+    	$errors['requete']='Pbs insertion famille :'.$requete;
+		$retour = 'Insertion echouer';
     	}
-    	return false;
-		*/
+		else
+		{
+		$retour = 'Insertion reussi' ;
+		}
+		return $retour ;
 	}
 }
 ?>

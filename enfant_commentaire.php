@@ -17,9 +17,6 @@ $site->style='perso';
 		}
 		if ($_SESSION['type']=='personnel'){
 			$site = new page_base_securisee_personnel('Accueil');
-			
-
-
 		}
 		if ($_SESSION['type']=='admin'){
 			$site = new page_base_securisee_admin('Accueil');
