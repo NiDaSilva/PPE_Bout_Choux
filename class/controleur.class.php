@@ -1011,7 +1011,7 @@ public function retourne_liste_enfant()
 		$date = $_POST['date'];
 		$id_enfant = $_POST['LesEnfants'];
 		$result2 = $this->vpdo->ajoutp ( $id_enfant, $commentaire, $date );
-		$retour = 'Insertion reussi';
+		$retour = $result2;
 		}
 		
 		return $retour;
