@@ -897,7 +897,7 @@ public function retourne_liste_enfant()
     	<table>
     		<thead>
         		<tr>
-            		<th >Identifiant Famille</th>
+            		<th >Identifiant enfant </th>
             		<th >Nom RP1</th>
             		<th >Prénom RP1</th> 
         		</tr>
