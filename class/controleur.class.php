@@ -903,6 +903,7 @@ public function retourne_liste_enfant()
         		</tr>
     		</thead>
     		<tbody >';
+    		echo ($_SESSION['id']);
 		$resulta = $this->vpdo->liste_enfant ($_SESSION['id']);
 					if ($resulta != false) {
 			while ( $row = $resulta->fetch ( PDO::FETCH_OBJ ) )

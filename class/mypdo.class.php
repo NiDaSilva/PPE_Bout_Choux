@@ -58,7 +58,8 @@ class mypdo extends PDO{
 
     public function liste_enfant($id)
     {
-        $requete='select * from enfant where id_famille='.$id.';';
+        mb_strtolower($id);
+        $requete='select * from enfant as e inner join famille as f on e.id_famille=f.id_famille where identifiant="'.$id.'";';
         $resulta=$this->connexion ->query($requete);         
         if ($resulta)
     
