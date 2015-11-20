@@ -250,7 +250,9 @@ class mypdo extends PDO{
 	
 	public function liste_enfantbrut()
 	{
-		 $requete='select * from enfant ;';
+		// $requete='select * from enfant ;';
+		$requete='SELECT * FROM enfant WHERE datenaiss >= NOW( ) - INTERVAL 3 YEAR;';
+
 		 
     	$result=$this->connexion->query($requete);
 
