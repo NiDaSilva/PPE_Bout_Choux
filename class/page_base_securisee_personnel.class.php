@@ -18,6 +18,12 @@ class page_base_securisee_personnel extends page_base {
 				<ul>
 							<li><a href="ajout_progres.php">Ajouter progrès</a></li>
 							<li><a href="enfant_commentaire.php">Consulter les commentaire d'un enfant</a></li>
+							<li><a href="Liste_Enfants.php">Liste des enfants </a>
+				</ul>
+			</li>
+			<li><a href="">Gestion des familles </a>
+				<ul>
+							<li><a href="Lister_famille.php">Lister les familes</a></li>
 				</ul>
 			</li>
 	

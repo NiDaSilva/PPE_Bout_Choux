@@ -880,6 +880,46 @@ class controleur {
 		return $retour;
 	}
 
+	public function retourne_liste_familles() {
+		
+		$retour = '
+				<style type="text/css">
+    			table {border-collapse: collapse;}
+				tr:nth-of-type(odd) {background: #eee;}
+				tr:nth-of-type(even) {background: #eff;}
+				tr{color: black;}
+				th {background: #333;color: white;}
+				td, th {padding: 6px;border: 1px solid #ccc;}
+				</style>
+				<article >
+    	<table>
+    		<thead>
+        		<tr>
+            		<th >Identifiant Famille</th>
+            		<th >Nom RP1</th>
+            		<th >Prénom RP1</th>
+    				<th ></th>
+        		</tr>
+    		</thead>
+    		<tbody >';
+			$result = $this->vpdo->liste_famille ();
+			if ($result != false) {
+			while ( $row = $result->fetch ( PDO::FETCH_OBJ ) )
+			// parcourir chaque ligne sélectionnée
+			{
+				
+				$retour = $retour . '<tr>
+    			<td>' . $row->identifiant  . '</td>
+    			<td>' . $row->nom1 . '</td>
+    			<td>' . $row->prenom1 . '</td>
+    			
+    			<td Align=center><input onClick="this.form.submit();" type="checkbox" name="nom_checkbox[]" value="' . $row->id_famille . '" /></td>
+    			</tr>';
+			}
+		}
+		$retour = $retour . '</tbody></table></form></article>';
+		return $retour;
+	}
 
 public function retourne_liste_enfant()
 	{
@@ -897,9 +937,9 @@ public function retourne_liste_enfant()
     	<table>
     		<thead>
         		<tr>
-            		<th >Identifiant enfant </th>
-            		<th >Nom RP1</th>
-            		<th >Prénom RP1</th> 
+            		<th >Commentaire Famille </th>
+            		<th >Nom Enfant</th>
+            		<th >Prénom Enfant</th> 
         		</tr>
     		</thead>
     		<tbody >';
@@ -910,7 +950,7 @@ public function retourne_liste_enfant()
 			{
 				
 				$retour = $retour . '<tr>
-    			<td>' . $row->id_enfant  . '</td>
+    			<td>' . $row->commentairefamille  . '</td>
     			<td>' . $row->nom . '</td>
     			<td>' . $row->prenom . '</td>
     			</tr>';
@@ -919,6 +959,7 @@ public function retourne_liste_enfant()
 		$retour = $retour . '</tbody></table></form></article>';
 		return $retour;
 	}
+
 
 
 	public function retourne_formulaire_liste_commentaire()

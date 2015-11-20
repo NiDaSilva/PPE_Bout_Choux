@@ -58,7 +58,7 @@ class mypdo extends PDO{
 
     public function liste_enfant($id)
     {
-        if(mb_strtolower($id)=='pierre')
+        if(mb_strtolower($id)=='pierre'||mb_strtolower($id)=='personnel')
         {
             $requete='select * from enfant ;';            
             $resulta=$this->connexion ->query($requete);         

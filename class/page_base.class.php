@@ -146,7 +146,7 @@ class page_base {
 			<footer>
 				<p>Site de la crèche des petits bouts de Choux -  ANGERS </p>
 				<p id="copyright">
-				créé par _____________________________________________
+				créé par Yahiaoui Aldwin, Nauleau Matthieu, Da Silva Nicolas
 				SSII 1FO@SIO - technologies mises en oeuvre PHP objet - jquery - Ajax
 				<a href="http://chevrollier.e-lyco.fr/">Chevrollier</a> 
 				</p>

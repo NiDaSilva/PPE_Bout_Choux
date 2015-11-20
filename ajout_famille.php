@@ -13,7 +13,12 @@ $site->style='perso';
 
 	if(isset($_SESSION['id']) && isset($_SESSION['type'])){
 		if ($_SESSION['type']=='famille'){
-			echo 'accés refuser';
+			$site = new page_base_securisee_admin('Accueil');
+			
+			$controleur=new controleur();
+
+			$site-> left_sidebar=$controleur->retourne_formulaire_famille('Ajout');
+			$site-> right_sidebar=$site-> rempli_right_sidebar();
 		}
 		if ($_SESSION['type']=='personnel'){
 			$site = new page_base_securisee_personnel('Accueil');
@@ -26,7 +31,11 @@ $site->style='perso';
 		}
 		if ($_SESSION['type']=='admin'){
 			$site = new page_base_securisee_admin('Accueil');
-			echo 'accés refuser';
+			
+			$controleur=new controleur();
+
+			$site-> left_sidebar=$controleur->retourne_formulaire_famille('Ajout');
+			$site-> right_sidebar=$site-> rempli_right_sidebar();
 		}
 	}
 
